@@ -1,0 +1,20 @@
+name: "Ren'Py Action - Build"
+description: "Get started with Container actions"
+author: "Proudust"
+
+inputs:
+  renpy-version:
+    description: "Ren'Py SDK version to use."
+    required: true
+
+  project-dir:
+    description: "The base directory containing of the project to run."
+    required: true
+
+runs:
+  using: "docker"
+  image: "docker://docker.pkg.github.com/proudust/renpy-docker/renpy:${{ inputs.renpy-version }}"
+  args:
+    - "./launcher"
+    - "distribute"
+    - ${{ inputs.project-dir }}
